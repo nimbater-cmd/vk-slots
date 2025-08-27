@@ -11,21 +11,12 @@ const reels = [
 const spinBtn = document.getElementById('spin-btn');
 const resultEl = document.getElementById('result');
 
-VK.init();
-
-VK.Auth.getLoginStatus(function (response) {
-  if (response.session) {
-    balance = 100;
-    balanceEl.textContent = balance;
-  } else {
-    VK.Auth.login(function (res) {
-      if (res.session) {
-        balance = 100;
-        balanceEl.textContent = balance;
-      }
-    });
-  }
-});
+// Начальный баланс
+window.onload = function() {
+  balance = 100;
+  balanceEl.textContent = balance;
+  resultEl.textContent = "Добро пожаловать! Крутите барабаны!";
+};
 
 function spin() {
   if (balance < spinCost) {
@@ -73,4 +64,5 @@ function checkWin(symbols) {
     resultEl.textContent = "Повезёт в следующий раз!";
   }
   balanceEl.textContent = balance;
+
 }
